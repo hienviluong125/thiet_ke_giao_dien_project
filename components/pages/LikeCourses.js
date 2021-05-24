@@ -1,10 +1,10 @@
 import React from "react";
 import { Text, View, StyleSheet } from "react-native";
 
-const CategoryScreen = () => {
+const LikeCoursesScreen = () => {
   return (
     <View style={styles.center}>
-      <Text>Category Screen</Text>
+      <Text>Like Courses Screen</Text>
     </View>
   );
 };
@@ -17,4 +17,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CategoryScreen;
+export default LikeCoursesScreen;

@@ -12,6 +12,7 @@ import LikeCourses from "../pages/LikeCourses";
 import NestedEx from "../pages/NestedEx";
 import ManageLearn from "../pages/ManageLearn";
 import CourseDetail from "../pages/CourseDetail";
+import CourseDocument from "../pages/CourseDocument";
 
 const Stack = createStackNavigator();
 
@@ -53,6 +54,14 @@ const LearningStackNavigator = () => {
       <Stack.Screen
         name="CourseDetail"
         component={CourseDetail}
+        options={{
+          ...headerBaseStyle,
+          headerTitle: "Hóa học 10",
+        }}
+      />
+      <Stack.Screen
+        name="CourseDocument"
+        component={CourseDocument}
         options={{
           ...headerBaseStyle,
           headerTitle: "Hóa học 10",

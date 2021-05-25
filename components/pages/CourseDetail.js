@@ -5,7 +5,7 @@ import { Title, Chip } from "react-native-paper";
 import VideoPlayer from "../VideoPlayer";
 import ListCourses from "../ListCourses";
 
-const CourseDetailScreen = () => {
+const CourseDetailScreen = ({ navigation }) => {
   return (
     <View style={styles.center}>
       <VideoPlayer />
@@ -16,7 +16,9 @@ const CourseDetailScreen = () => {
         </Text>
         <View style={styles.actionContainer}>
           <Text style={styles.baseText}>Nội dung: </Text>
-          <TouchableOpacity onPress={() => console.log("Pressed")}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("CourseDocument")}
+          >
             <Chip
               icon="file-document-outline"
               mode="outlined"

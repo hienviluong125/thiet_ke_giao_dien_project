@@ -21,8 +21,9 @@ const Tab = createBottomTabNavigator();
 
 const getTabBarLearningStackVisibility = (route) => {
   const routeName = getFocusedRouteNameFromRoute(route);
+  const filterRoute = ["CourseDetail", "CourseDocument"];
 
-  return routeName === "CourseDetail" ? false : true;
+  return filterRoute.includes(routeName) ? false : true;
 };
 
 const BottomTabNavigator = () => {

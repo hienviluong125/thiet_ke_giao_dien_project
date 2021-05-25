@@ -50,13 +50,26 @@ const DrawerContent = ({ navigation }) => {
           <Title style={styles.title}>Dawid Urbaniak</Title>
         </View>
         <Drawer.Section style={styles.drawerSection}>
+          <DrawerItem
+            icon={() => {
+              return (
+                <MaterialCommunityIcons name="home" color="gray" size={24} />
+              );
+            }}
+            label="Trang chủ"
+            onPress={() => {
+              navigation.navigate("Home");
+            }}
+          />
           {MENU_ITEMS.map((item, index) => {
             return (
               <DrawerItem
                 key={index}
                 icon={() => item.icon}
                 label={item.label}
-                onPress={() => {}}
+                onPress={() => {
+                  navigation.navigate("ManageLearn");
+                }}
               />
             );
           })}

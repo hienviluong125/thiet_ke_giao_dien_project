@@ -10,6 +10,7 @@ import Learning from "../pages/Learning";
 import Notification from "../pages/Notification";
 import LikeCourses from "../pages/LikeCourses";
 import NestedEx from "../pages/NestedEx";
+import ManageLearn from "../pages/ManageLearn";
 
 const Stack = createStackNavigator();
 
@@ -54,6 +55,20 @@ const LikeCoursesStackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={screenOptions}>
       <Stack.Screen name="LikeCourses" component={LikeCourses} />
+    </Stack.Navigator>
+  );
+};
+
+const ManageLearnStackNavigator = () => {
+  return (
+    <Stack.Navigator screenOptions={screenOptions}>
+      <Stack.Screen
+        name="ManageLearn"
+        component={ManageLearn}
+        options={{
+          headerTitle: "Quản lý học tập",
+        }}
+      />
     </Stack.Navigator>
   );
 };
@@ -105,4 +120,5 @@ export {
   LearningStackNavigator,
   NotificationStackNavigator,
   LikeCoursesStackNavigator,
+  ManageLearnStackNavigator,
 };

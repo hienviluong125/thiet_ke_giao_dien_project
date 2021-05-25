@@ -10,6 +10,7 @@ const DrawerNavigator = () => {
   return (
     <Drawer.Navigator drawerContent={(props) => <DrawerContent {...props} />}>
       <Drawer.Screen name="Home" component={TabNavigator} />
+      <Drawer.Screen name="Learning" component={TabNavigator} />
     </Drawer.Navigator>
   );
 };

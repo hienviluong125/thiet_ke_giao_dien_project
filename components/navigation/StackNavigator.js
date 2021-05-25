@@ -10,6 +10,8 @@ import Learning from "../pages/Learning";
 import Notification from "../pages/Notification";
 import LikeCourses from "../pages/LikeCourses";
 import NestedEx from "../pages/NestedEx";
+import QuizList from "../pages/QuizList";
+import Quiz from "../pages/Quiz";
 
 const Stack = createStackNavigator();
 
@@ -36,8 +38,18 @@ const CategoryStackNavigator = () => {
 
 const LearningStackNavigator = () => {
   return (
-    <Stack.Navigator screenOptions={screenOptions}>
-      <Stack.Screen name="Learning" component={Learning} />
+    <Stack.Navigator>
+      <Stack.Screen name="Learning" component={Learning} options={screenOptions} />
+      <Stack.Screen
+        name="QuizList"
+        component={QuizList}
+        options={headerBaseStyle}
+      />
+      <Stack.Screen
+        name="Quiz"
+        component={Quiz}
+        options={headerBaseStyle}
+      />
     </Stack.Navigator>
   );
 };
@@ -62,6 +74,7 @@ const headerBaseStyle = {
   headerStyle: {
     backgroundColor: "#004640",
   },
+  headerTitle: null,
   headerTintColor: "white",
   headerBackTitle: "Back",
 };

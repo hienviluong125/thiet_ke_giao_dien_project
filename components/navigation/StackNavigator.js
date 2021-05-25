@@ -42,9 +42,12 @@ const LearningStackNavigator = () => {
       <Stack.Screen
         name="Learning"
         component={Learning}
-        options={{
-          ...screenOptions,
-          headerTitle: "Học tập",
+        options={({ navigation }) => {
+          const baseOptions = screenOptions({ navigation });
+          return {
+            ...baseOptions,
+            headerTitle: "Học tập",
+          };
         }}
       />
       <Stack.Screen

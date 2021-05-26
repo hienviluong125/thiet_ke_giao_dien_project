@@ -29,7 +29,7 @@ const CourseDetailScreen = ({ navigation }) => {
               Văn bản
             </Chip>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => console.log("Pressed")}>
+          <TouchableOpacity onPress={() => navigation.navigate("QuizList")}>
             <Chip
               icon="ab-testing"
               mode="outlined"

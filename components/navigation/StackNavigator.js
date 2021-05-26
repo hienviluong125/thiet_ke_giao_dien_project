@@ -13,6 +13,8 @@ import NestedEx from "../pages/NestedEx";
 import ManageLearn from "../pages/ManageLearn";
 import CourseDetail from "../pages/CourseDetail";
 import CourseDocument from "../pages/CourseDocument";
+import QuizList from "../pages/QuizList";
+import Quiz from "../pages/Quiz";
 
 const Stack = createStackNavigator();
 
@@ -67,6 +69,24 @@ const LearningStackNavigator = () => {
           headerTitle: "Hóa học 10",
         }}
       />
+
+      <Stack.Screen
+        name="Quiz"
+        component={Quiz}
+        options={{
+          ...headerBaseStyle,
+          headerTitle: "Hóa học 10",
+        }}
+      />
+
+      <Stack.Screen
+        name="QuizList"
+        component={QuizList}
+        options={{
+          ...headerBaseStyle,
+          headerTitle: "Hóa học 10",
+        }}
+      />
     </Stack.Navigator>
   );
 };
@@ -103,11 +123,11 @@ const ManageLearnStackNavigator = () => {
 
 const headerBaseStyle = {
   headerStyle: {
-    backgroundColor: "#004640",
+    backgroundColor: "#004640"
   },
   headerTitle: null,
   headerTintColor: "white",
-  headerBackTitle: "Back",
+  headerBackTitle: "Back"
 };
 
 const screenOptions = ({ navigation }) => ({

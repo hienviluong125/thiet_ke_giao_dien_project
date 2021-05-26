@@ -3,13 +3,31 @@ import { View, StyleSheet, ScrollView } from "react-native";
 
 import CourseCard from "../CourseCard";
 
+const COURSE_DATA = [
+  {
+    title: "Hóa học 10",
+    progress: 0.3,
+    price: 0,
+  },
+  {
+    title: "Toán học 10",
+    progress: 0.5,
+    price: "100.000",
+  },
+  {
+    title: "Lý 10",
+    progress: 0.3,
+    price: "50.000",
+  },
+];
+
 const LearningScreen = (props) => {
   return (
     <ScrollView style={styles.center}>
       <View style={styles.container}>
-        <CourseCard {...props} />
-        <CourseCard {...props} />
-        <CourseCard {...props} />
+        {COURSE_DATA.map((course, index) => {
+          return <CourseCard key={index} {...props} course={course} />;
+        })}
       </View>
     </ScrollView>
   );

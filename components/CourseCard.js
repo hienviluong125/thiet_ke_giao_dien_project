@@ -3,7 +3,9 @@ import { Text, View, StyleSheet } from "react-native";
 import { Avatar, Card, ProgressBar } from "react-native-paper";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-const Course = ({ navigation }) => {
+const Course = ({ navigation, course }) => {
+  const { title, progress, price } = course;
+
   return (
     <Card
       style={styles.item}
@@ -13,7 +15,7 @@ const Course = ({ navigation }) => {
     >
       <Card.Content>
         <Card.Title
-          title="Hóa học 10"
+          title={title}
           style={styles.titleContainer}
           titleStyle={styles.cardTitle}
           right={() => {
@@ -36,13 +38,19 @@ const Course = ({ navigation }) => {
           />
           <View style={styles.contentContainer}>
             <Text style={styles.info}>Tác giả: Nguyễn Đình Bình</Text>
-            <Text style={styles.info}>Giá: Miễn phí</Text>
+            <Text style={styles.info}>
+              Giá: {price == 0 ? "Miễn phí" : `${price} VNĐ`}
+            </Text>
           </View>
           <View style={styles.progressBar}>
-            <ProgressBar progress={0.3} color="#004640" style={{ height: 8 }} />
+            <ProgressBar
+              progress={progress}
+              color="#004640"
+              style={{ height: 8 }}
+            />
           </View>
           <View style={styles.infoContainer}>
-            <Text style={styles.info}>30% hoàn thành</Text>
+            <Text style={styles.info}>{progress * 100}% hoàn thành</Text>
             <Text style={styles.info}>Đăng ký lúc: 05/05/2021</Text>
           </View>
         </View>

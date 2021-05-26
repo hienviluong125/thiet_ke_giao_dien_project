@@ -10,8 +10,9 @@ import Learning from "../pages/Learning";
 import Notification from "../pages/Notification";
 import LikeCourses from "../pages/LikeCourses";
 import NestedEx from "../pages/NestedEx";
-import QuizList from "../pages/QuizList";
-import Quiz from "../pages/Quiz";
+import ManageLearn from "../pages/ManageLearn";
+import CourseDetail from "../pages/CourseDetail";
+import CourseDocument from "../pages/CourseDocument";
 
 const Stack = createStackNavigator();
 
@@ -39,16 +40,32 @@ const CategoryStackNavigator = () => {
 const LearningStackNavigator = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Learning" component={Learning} options={screenOptions} />
       <Stack.Screen
-        name="QuizList"
-        component={QuizList}
-        options={headerBaseStyle}
+        name="Learning"
+        component={Learning}
+        options={({ navigation }) => {
+          const baseOptions = screenOptions({ navigation });
+          return {
+            ...baseOptions,
+            headerTitle: "Học tập",
+          };
+        }}
       />
       <Stack.Screen
-        name="Quiz"
-        component={Quiz}
-        options={headerBaseStyle}
+        name="CourseDetail"
+        component={CourseDetail}
+        options={{
+          ...headerBaseStyle,
+          headerTitle: "Hóa học 10",
+        }}
+      />
+      <Stack.Screen
+        name="CourseDocument"
+        component={CourseDocument}
+        options={{
+          ...headerBaseStyle,
+          headerTitle: "Hóa học 10",
+        }}
       />
     </Stack.Navigator>
   );
@@ -66,6 +83,20 @@ const LikeCoursesStackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={screenOptions}>
       <Stack.Screen name="LikeCourses" component={LikeCourses} />
+    </Stack.Navigator>
+  );
+};
+
+const ManageLearnStackNavigator = () => {
+  return (
+    <Stack.Navigator screenOptions={screenOptions}>
+      <Stack.Screen
+        name="ManageLearn"
+        component={ManageLearn}
+        options={{
+          headerTitle: "Quản lý học tập",
+        }}
+      />
     </Stack.Navigator>
   );
 };
@@ -118,4 +149,5 @@ export {
   LearningStackNavigator,
   NotificationStackNavigator,
   LikeCoursesStackNavigator,
+  ManageLearnStackNavigator,
 };

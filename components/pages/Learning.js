@@ -1,23 +1,30 @@
 import React from "react";
-import { Button, Text, View, StyleSheet } from "react-native";
+import { View, StyleSheet, ScrollView } from "react-native";
 
-const LearningScreen = ({navigation}) => {
+import CourseCard from "../CourseCard";
+
+const LearningScreen = (props) => {
   return (
-    <View style={styles.center}>
-      <Text>Learning Screen</Text>
-      <Button
-        title="Go to Quiz List Screen"
-        onPress={() => navigation.navigate("QuizList")}
-      />
-    </View>
+    <ScrollView style={styles.center}>
+      <View style={styles.container}>
+        <CourseCard {...props} />
+        <CourseCard {...props} />
+        <CourseCard {...props} />
+      </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   center: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+    paddingVertical: 30,
+    paddingHorizontal: 10,
+  },
+  container: {
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
   },
 });
 

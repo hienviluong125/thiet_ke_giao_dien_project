@@ -7,6 +7,7 @@ import {
   AntDesign,
 } from "@expo/vector-icons";
 import { StyleSheet } from "react-native";
+import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 
 import {
   MainStackNavigator,
@@ -17,6 +18,13 @@ import {
 } from "./StackNavigator";
 
 const Tab = createBottomTabNavigator();
+
+const getTabBarLearningStackVisibility = (route) => {
+  const routeName = getFocusedRouteNameFromRoute(route);
+  const filterRoute = ["CourseDetail", "CourseDocument"];
+
+  return filterRoute.includes(routeName) ? false : true;
+};
 
 const BottomTabNavigator = () => {
   return (
@@ -44,11 +52,14 @@ const BottomTabNavigator = () => {
       <Tab.Screen
         name="Learning"
         component={LearningStackNavigator}
-        options={{
-          tabBarLabel: "Học tập",
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="book" color={color} size={size} />
-          ),
+        options={({ route }) => {
+          return {
+            tabBarLabel: "Học tập",
+            tabBarIcon: ({ color, size }) => (
+              <Ionicons name="book" color={color} size={size} />
+            ),
+            tabBarVisible: getTabBarLearningStackVisibility(route),
+          };
         }}
       />
       <Tab.Screen

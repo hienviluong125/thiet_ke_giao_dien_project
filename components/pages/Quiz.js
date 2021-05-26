@@ -14,7 +14,7 @@ let defaultQuestion = [
       "vừa có tính oxi hóa, vừa có tính khử",
       "tính chất hóa hoct cơ bản là tính oxi hòa"
     ],
-    correctAnswer: 0,
+    correctAnswer: 2,
   },
   {
     question: "Trong số các polime sau : nhựa bakelit (1) ; polietilen (2); tơ capron (3); poli(vinyl clorua) (4); xenlulozơ (5). Chất thuộc loại polime tổng hợp là",
@@ -24,7 +24,7 @@ let defaultQuestion = [
       "(2), (3), (4), (5)",
       "(1), (2), (3), (4)",
     ],
-    correctAnswer: 0,
+    correctAnswer: 3,
   },
   {
     question: "Khi có tia lửa điện hoặc nhiệt đọ cao. Nitơ tác dụng trực tiếp với oxi tạo ra hợp chất X. X tiếp tục tác dụng với oxi trong không khí tạo thành hợp chất Y. Công thức của X, Y lần lượt là",
@@ -57,7 +57,7 @@ let defaultQuestion = [
       "50%.",
       "67%.",
     ],
-    correctAnswer: 0,
+    correctAnswer: 1,
   },
 
   {
@@ -68,7 +68,7 @@ let defaultQuestion = [
       "36,75.",
       "12,25.",
     ],
-    correctAnswer: 0,
+    correctAnswer: 1,
   },
   {
     question: "Cho 3 gam Al phản ứng vừa đủ với dung dịch chứa 28 gam HNO3 thu được khí X và dung dịch không chứa NH4NO3. Khí X là",
@@ -78,7 +78,7 @@ let defaultQuestion = [
       "NO.",
       "NO2.",
     ],
-    correctAnswer: 0,
+    correctAnswer: 3,
   },
 
   {
@@ -89,7 +89,7 @@ let defaultQuestion = [
       "14,74.",
       "17,22."
     ],
-    correctAnswer: 0,
+    correctAnswer: 3,
   },
 
 
@@ -101,8 +101,78 @@ let defaultQuestion = [
       "12,48 và 0,04",
       "13,44 và 0,08",
     ],
+    correctAnswer: 2,
+  },
+  {
+    question: "Các electron trong cùng một lớp có mức năng lượng?",
+    answers: [
+      "Bằng nhau",
+      "Gần bằng nhau",
+      "Không bằng nhau",
+      "Tùy từng nguyên tố"
+    ],
     correctAnswer: 0,
   },
+  {
+    question: "Hạt nhân của hầu hết các nguyên tử được cấu tạo từ các loại hạt sau:",
+    answers: [
+      "electron, notron",
+      "proton, notron",
+      "electron, proton",
+      "electron, proton, notron"
+    ],
+    correctAnswer: 1,
+  },
+  {
+    question: "Khối lượng nguyên tử tập trung hầu hết ở hạt nhân và được tính bằng",
+    answers: [
+      "Tổng số hạt proton và tổng số hạt nơtron",
+      "Tổng khối lượng của proton, nơtron và electron có trong nguyên tử",
+      "Tổng khối lượng của các hạt nơtron và electron",
+      "Tổng khối lượng của proton và electron"
+    ],
+    correctAnswer: 1,
+  },
+  {
+    question: "Tưởng tượng ta có thể phóng đại hạt nhân thành một quả bóng bàn có đường kính 4 cm thì đường kính của nguyên tử là bao nhiêu? Biết rằng đường kính của nguyên tử lớn hơn đường kính của hạt nhân khoảng 104 lần.",
+    answers: [
+      "4m.    ",
+      "40 m.    ",
+      "400 m.   ",
+      "4000 m."
+    ],
+    correctAnswer: 1,
+  },
+  {
+    question: "Hai nguyên tố X và Y cùng một chu kì và ở 2 phân nhóm chính kế tiếp nhau có tổng số proton trong 2 hạt nhân nguyên tử là 25. X và Y thuộc chu kỳ và nhóm nào say đây trong bảng tuần hoàn?",
+    answers: [
+      "Chu kỳ 3 và các nhóm IA và IIA",
+      "Chu kỳ 3 và các nhóm IIA và IIIA",
+      "Chu kỳ 2và các nhóm IIA và IIIA",
+      "Chu kỳ 2 và các nhóm IA và IIA"
+    ],
+    correctAnswer: 3,
+  },
+  {
+    question: "Nhận định nào sau đây chính xác?",
+    answers: [
+      "Phân lớp electron là tập hợp các electron có mức năng lượng gần bằng nhau",
+      "Phân lớp electron thường được kí hiệu bằng các chữ số: 1, 2, 3",
+      "Lớp electron là tập hợp các electron có mức năng lượng bằng nhau",
+      "Lớp electron thường được kí hiệu bằng các chữ cái: K, L, M, ..."
+    ],
+    correctAnswer: 0,
+  },
+  {
+    question: "Tổng số hạt mang điện trong hợp chất XY2 bằng 44. Số hạt mang điện của nguyên tử Y nhiều hơn số hạt mang điện của nguyên tử X là 4. số hiệu nguyên từ của X và Y lần lượt là",
+    answers: [
+      "5 và 9",
+      "7 và 9",
+      "8 và 16",
+      "6 và 8"
+    ],
+    correctAnswer: 1,
+  }
 ]
 
 
@@ -162,10 +232,10 @@ const Quiz = ({ navigation, route }) => {
 
   return (
     <PaperProvider theme={theme}>
-      <Portal style={{padding:0, margin: 0}}>
-        <Modal visible={visible} onDismiss={hideModal} style={{padding: 0, margin: 0}} contentContainerStyle={containerStyle}>
-          <Text style={{color: 'rgba(0, 0, 0, 0.85)', fontSize: 15}}>Bạn có chắc chắn muốn thực hiền hành động này hay không ? Những câu hỏi chưa trả lời sẽ không được tính điểm.</Text>
-          <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'flex-end'}}>
+      <Portal style={{ padding: 0, margin: 0 }}>
+        <Modal visible={visible} onDismiss={hideModal} style={{ padding: 0, margin: 0 }} contentContainerStyle={containerStyle}>
+          <Text style={{ color: 'rgba(0, 0, 0, 0.85)', fontSize: 15 }}>Bạn có chắc chắn muốn thực hiền hành động này hay không ? Những câu hỏi chưa trả lời sẽ không được tính điểm.</Text>
+          <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-end' }}>
             <Button onPress={hideModal}>Hủy</Button>
             <Button onPress={submitResult}>Xác nhận</Button>
           </View>

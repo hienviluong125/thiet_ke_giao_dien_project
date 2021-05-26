@@ -58,7 +58,7 @@ const QuizList = ({ navigation, route }) => {
       <Portal style={{padding:0, margin: 0}}>
         <Modal visible={visible} onDismiss={hideModal} style={{padding: 0, margin: 0}} contentContainerStyle={containerStyle}>
           <MaterialCommunityIcons name="check-circle-outline" style={{color: "#4CAF50", fontSize: 50, textAlign: 'center' }}/>
-          <Text style={{fontSize: 18, textAlign: 'center', marginTop: 10,}}>Bạn đã  hoàn thành bài trắc nghiệm với số câu đúng là 8/10.</Text>
+          <Text style={{fontSize: 18, textAlign: 'center', marginTop: 10,}}>Bạn đã  hoàn thành bài trắc nghiệm với số câu đúng là 14/16.</Text>
           <Button style={{backgroundColor: "#4CAF50", marginTop: 15 }} color="white" labelStyle={{fontSize: 17}} onPress={hideModal}>Xem kết quả</Button>
         </Modal>
       </Portal>

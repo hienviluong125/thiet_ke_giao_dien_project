@@ -33,14 +33,14 @@ const Course = ({ navigation, course }) => {
       <Card.Actions>
         <View style={styles.cardActionContainer}>
           <Avatar.Image
-            size={70}
+            size={64}
             source={{ uri: "https://loremflickr.com/320/240/dog" }}
           />
           <View style={styles.contentContainer}>
             <Text style={styles.info}>Tác giả: Nguyễn Đình Bình</Text>
-            <Text style={styles.info}>
+            {/* <Text style={styles.info}>
               Giá: {price == 0 ? "Miễn phí" : `${price} VNĐ`}
-            </Text>
+            </Text> */}
           </View>
           <View style={styles.progressBar}>
             <ProgressBar
@@ -51,7 +51,7 @@ const Course = ({ navigation, course }) => {
           </View>
           <View style={styles.infoContainer}>
             <Text style={styles.info}>{progress * 100}% hoàn thành</Text>
-            <Text style={styles.info}>Đăng ký lúc: 05/05/2021</Text>
+            {/* <Text style={styles.info}>Đăng ký lúc: 05/05/2021</Text> */}
           </View>
         </View>
       </Card.Actions>

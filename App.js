@@ -14,6 +14,8 @@ const theme = {
 };
 
 export default function App() {
+  console.disableYellowBox = true;
+
   return (
     <PaperProvider theme={theme}>
       <NavigationContainer>

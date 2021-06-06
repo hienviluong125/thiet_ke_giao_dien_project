@@ -123,11 +123,15 @@ const ManageLearnStackNavigator = () => {
 
 const headerBaseStyle = {
   headerStyle: {
-    backgroundColor: "#004640"
+    backgroundColor: "#004640",
+    height: 90,
   },
   headerTitle: null,
   headerTintColor: "white",
-  headerBackTitle: "Back"
+  headerBackTitle: "Back",
+  headerTitleStyle: {
+    fontSize: 23,
+  },
 };
 
 const screenOptions = ({ navigation }) => ({

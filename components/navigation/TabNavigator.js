@@ -34,8 +34,8 @@ const BottomTabNavigator = () => {
         component={MainStackNavigator}
         options={{
           tabBarLabel: "Trang chủ",
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="home" color={color} size={size} />
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="home" color={color} size={26} />
           ),
         }}
       />
@@ -44,8 +44,8 @@ const BottomTabNavigator = () => {
         component={CategoryStackNavigator}
         options={{
           tabBarLabel: "Danh mục",
-          tabBarIcon: ({ color, size }) => (
-            <MaterialIcons name="category" color={color} size={size} />
+          tabBarIcon: ({ color }) => (
+            <MaterialIcons name="category" color={color} size={26} />
           ),
         }}
       />
@@ -55,8 +55,8 @@ const BottomTabNavigator = () => {
         options={({ route }) => {
           return {
             tabBarLabel: "Học tập",
-            tabBarIcon: ({ color, size }) => (
-              <Ionicons name="book" color={color} size={size} />
+            tabBarIcon: ({ color }) => (
+              <Ionicons name="book" color={color} size={26} />
             ),
             tabBarVisible: getTabBarLearningStackVisibility(route),
           };
@@ -67,8 +67,8 @@ const BottomTabNavigator = () => {
         component={NotificationStackNavigator}
         options={{
           tabBarLabel: "Thông báo",
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="md-notifications-sharp" color={color} size={size} />
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="md-notifications-sharp" color={color} size={26} />
           ),
         }}
       />
@@ -77,8 +77,8 @@ const BottomTabNavigator = () => {
         component={LikeCoursesStackNavigator}
         options={{
           tabBarLabel: "Yêu thích",
-          tabBarIcon: ({ color, size }) => (
-            <AntDesign name="heart" color={color} size={size} />
+          tabBarIcon: ({ color }) => (
+            <AntDesign name="heart" color={color} size={26} />
           ),
         }}
       />
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   navigator: {
     backgroundColor: "#004640",
     paddingBottom: 3,
-    minHeight: 62,
+    minHeight: 66,
   },
 });
 
@@ -99,7 +99,7 @@ const tabBarOptions = {
   inactiveTintColor: "#b5b5b5",
   showIcon: "true", // Shows an icon for both iOS and Android
   labelStyle: {
-    fontSize: 13,
+    fontSize: 16,
   },
   style: styles.navigator,
 };

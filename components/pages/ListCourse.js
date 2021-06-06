@@ -9,27 +9,6 @@ import {
 import DropDownItem from "react-native-drop-down-item";
 import RoundCheckbox from "rn-round-checkbox";
 
-const COURSE_DATA = [
-  {
-    title: "Chương 1: Nguyên tử",
-    point: 15,
-    maxPoint: 20,
-    lessons: LESSON_DATA,
-  },
-  {
-    title: "Chương 2: Liên kết hóa học",
-    point: 20,
-    maxPoint: 20,
-    lessons: LESSON_DATA,
-  },
-  {
-    title: "Chương 3: Phản ứng oxi hóa khử",
-    point: 19,
-    maxPoint: 20,
-    lessons: LESSON_DATA,
-  },
-];
-
 const LESSON_DATA = [
   {
     id: 1,
@@ -48,6 +27,27 @@ const LESSON_DATA = [
     title: "Bài 3: Cấu tạo vỏ nguyên tử",
     isDone: false,
     videoTime: "25 phút",
+  },
+];
+
+const COURSE_DATA = [
+  {
+    title: "Chương 1: Nguyên tử",
+    point: 15,
+    maxPoint: 20,
+    lessons: LESSON_DATA,
+  },
+  {
+    title: "Chương 2: Liên kết hóa học",
+    point: 20,
+    maxPoint: 20,
+    lessons: LESSON_DATA,
+  },
+  {
+    title: "Chương 3: Phản ứng oxi hóa khử",
+    point: 19,
+    maxPoint: 20,
+    lessons: LESSON_DATA,
   },
 ];
 
@@ -97,7 +97,7 @@ const ListCourseScreen = ({ navigation }) => {
               }
             >
               <View style={{ padding: 0, margin: 0 }}>
-                {LESSON_DATA.map((lesson, index) => {
+                {course.lessons.map((lesson, index) => {
                   return (
                     <Row
                       key={index}

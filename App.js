@@ -14,6 +14,7 @@ const theme = {
 };
 
 export default function App() {
+  //hidden warning on expo demo
   console.disableYellowBox = true;
 
   return (

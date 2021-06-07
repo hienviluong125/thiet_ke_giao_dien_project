@@ -1,9 +1,9 @@
 import React from "react";
 import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
-import { Title, Chip } from "react-native-paper";
+import { Title, Chip, Button } from "react-native-paper";
 
 import VideoPlayer from "../VideoPlayer";
-import ListCourses from "../ListCourses";
+// import ListCourses from "../ListCourses";
 
 const CourseDetailScreen = ({ navigation }) => {
   return (
@@ -42,7 +42,15 @@ const CourseDetailScreen = ({ navigation }) => {
           </TouchableOpacity>
         </View>
       </View>
-      <ListCourses />
+      <Button
+        icon="format-list-bulleted"
+        mode="contained"
+        onPress={() => {
+          navigation.navigate("ListCourse");
+        }}
+      >
+        Xem danh sách bài học
+      </Button>
     </View>
   );
 };

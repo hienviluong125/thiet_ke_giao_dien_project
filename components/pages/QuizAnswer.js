@@ -2,7 +2,7 @@ import React from "react";
 import { TextInput, ScrollView, Text, View, StyleSheet } from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Modal, Portal, FAB, RadioButton, Button, DefaultTheme, ThemeProvider as PaperProvider } from 'react-native-paper';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const questionNo = ['A', 'B', 'C', 'D'];
 let defaultQuestion = [
@@ -10,11 +10,11 @@ let defaultQuestion = [
     question: "Đặc điểm chung của các đơn chất halogen (F2, Cl2, Br2, I2):",
     answers: [
       "Ở điều kiện thường là chất khí",
+			"Tính chất hóa học cơ bản là tính oxi hóa",
+			"vừa có tính oxi hóa, vừa có tính khử",
       "Tác dụng mãnh liệt với nước",
-      "vừa có tính oxi hóa, vừa có tính khử",
-      "tính chất hóa hoct cơ bản là tính oxi hòa"
     ],
-    correctAnswer: 2,
+    correctAnswer: 1,
   },
   {
     question: "Trong số các polime sau : nhựa bakelit (1) ; polietilen (2); tơ capron (3); poli(vinyl clorua) (4); xenlulozơ (5). Chất thuộc loại polime tổng hợp là",
@@ -171,7 +171,7 @@ let defaultQuestion = [
 ]
 
 
-const Quiz = ({ navigation, route }) => {
+const QuizAnswer = ({ navigation, route }) => {
   const theme = {
     ...DefaultTheme,
     colors: {
@@ -180,6 +180,13 @@ const Quiz = ({ navigation, route }) => {
       accent: "#f1c40f",
     },
   };
+
+  useEffect(() => {
+    if(route.params && route.params.qIdx) {
+      setQuestionIndex(route.params.qIdx)
+      setFastNavQuestionIdx(route.params.qIdx + 1)
+    }
+  }, [route]);
 
   const [totalQuestions, _1] = useState(defaultQuestion.length);
   const [questionIndex, setQuestionIndex] = useState(0);
@@ -298,6 +305,12 @@ const Quiz = ({ navigation, route }) => {
 
           <Icon name="chevron-right" style={styles.chevronIcon} />
 
+					<Text style={styles.breadcumText}>
+            Đáp án
+          </Text>
+
+          <Icon name="chevron-right" style={styles.chevronIcon} />
+
           <Text style={[styles.breadcumText, styles.activeBreadcumText]}>
             {route.params.quizLession.length > 30 ? route.params.quizLession.substring(0, 27) + '...' : route.params.quizLession}
           </Text>
@@ -312,16 +325,33 @@ const Quiz = ({ navigation, route }) => {
           {
             questionList[questionIndex].answers.map((answer, idx) =>
             (
-              <View style={[{ marginHorizontal: 10, marginTop: 20, paddingHorizontal: 15, paddingVertical: 20, backgroundColor: "rgba(33, 33, 33, 0.1)", borderRadius: 4 }, choosedIdx === idx ? { backgroundColor: '#B2DFDB' } : {}]}>
-                <Text style={{ fontSize: 18 }} onPress={(e) => chooseAnswer(idx)}>{questionNo[idx]}. {answer}</Text>
+              <View style={[{ marginHorizontal: 10, marginTop: 20, paddingHorizontal: 15, paddingVertical: 20, backgroundColor: "rgba(33, 33, 33, 0.1)", borderRadius: 4 }, questionList[questionIndex].correctAnswer === idx ? { backgroundColor: '#B2DFDB' } : {}]}>
+                <Text style={{ fontSize: 18 }} >{questionNo[idx]}. {answer}</Text>
               </View>
             )
             )
           }
 
+					<View style={{paddingHorizontal: 15, marginTop: 20}}>
+						<View style={{ borderTopWidth: 1, width: '100%', borderTopColor: '#004640', marginBottom: 15}} ></View>
+						<Text style={{fontSize: 18, fontWeight: "500"}}>Đáp án:</Text>
+						<Text style={{fontSize: 18, fontWeight: "500", color: "#C62828", marginTop: 10}}>
+							A. Sai vì Br2 là chất lỏng và L2 là chất rắn
+						</Text>
+						<Text style={{fontSize: 18, fontWeight: "500", color: "#004640", marginTop: 10}}>
+							B. Đúng vì các đơn chất Halogen có tính chất hóa học cơ bản là tính oxi hóa mạnh
+						</Text>
+						<Text style={{fontSize: 18, fontWeight: "500", color: "#C62828", marginTop: 10}}>
+							C. Sai vì F2 chỉ có tính oxi hóa
+						</Text>
+						<Text style={{fontSize: 18, fontWeight: "500", color: "#C62828", marginTop: 10}}>
+							D. Sai vì ngoại trừ F2 thì các chất còn lại tác dụng kém với nước
+						</Text>
+					</View>
+
         </ScrollView>
         {/* Bottom navigation */}
-        <View style={{ marginTop: 'auto', marginBottom: 20, marginHorizontal: 10 }}>
+        <View style={{ marginTop: 20, marginBottom: 20, marginHorizontal: 10 }}>
           <View style={{ alignItems: 'center', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginBottom: 15 }}>
             <FAB
               small
@@ -344,10 +374,6 @@ const Quiz = ({ navigation, route }) => {
               onPress={nextQuestion}
             />
           </View>
-          <View>
-            <Button style={{ backgroundColor: '#004640' }} labelStyle={{ fontSize: 19, color: '#fff' }} onPress={() => showModal()}>Hoàn tất</Button>
-          </View>
-
         </View>
       </View>
     </PaperProvider>
@@ -383,8 +409,8 @@ const styles = StyleSheet.create({
   },
 
   question: {
-    width: '100%',
+    width: '100%'
   }
 });
 
-export default Quiz;
+export default QuizAnswer;

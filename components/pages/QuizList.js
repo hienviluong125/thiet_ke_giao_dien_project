@@ -24,42 +24,71 @@ const QuizList = ({ navigation, route }) => {
   };
 
   useEffect(() => {
-    const unsubscribe = navigation.addListener('focus', (a, b, c) => {
-
+    if (route.params && route.params.receiveResult) {
       showModal()
-    });
-
-    return unsubscribe;
-  }, [navigation]);
-
-  // useEffect(() => {
-  //   const unsubscribe = navigation.addListener('focus', (e) => {
-  //     console.log(e)
-  //   });
-
-  //   return unsubscribe;
-  // }, [navigation]);
+    }
+  }, [route]);
 
   const [lessions, _] = useState([
-    "Nguyên tử",
-    "Bảng tuần hoàn nguyên tố hóa học",
-    "Liên kết hóa học",
-    "Phản ứng oxi hóa khử",
-    "Nhóm Halogen",
-    "Tốc độ phản ứng và sự cân bằng",
-    "Đề tổng hợp 1",
-    "Đề tổng hợp 2",
-    "Đề tổng hợp 3",
-    "Đề tổng hợp 4",
+    {
+      name: "Bài tập chương 01: Nguyên tử",
+      done: 14,
+      total: 16,
+    },
+    {
+      name: "Bài tập chương 02: Bảng tuần hoàn nguyên tố hóa học",
+      done: 8,
+      total: 16,
+    },
+    {
+      name: "Bài tập chương 03: Liên kết hóa học",
+      done: 0,
+      total: 16,
+    },
+    {
+      name: "Bài tập chương 04: Phản ứng oxi hóa khử",
+      done: 0,
+      total: 16,
+    },
+    {
+      name: "Bài tập chương 05: Nhóm Halogen",
+      done: 0,
+      total: 16,
+    },
+    {
+      name: "Bài tập chương 06: Tốc độ phản ứng và sự cân bằng",
+      done: 0,
+      total: 16,
+    },
+    {
+      name: "Bài tập tổng hợp 1",
+      done: 0,
+      total: 16,
+    },
+    {
+      name: "Bài tập tổng hợp 2",
+      done: 0,
+      total: 16,
+    },
+    {
+      name: "Bài tập tổng hợp 3",
+      done: 0,
+      total: 16,
+    },
+    {
+      name: "Bài tập tổng hợp 4",
+      done: 0,
+      total: 16,
+    },
   ])
 
   return (
     <View style={{ backgroundColor: "#ffffff", height: "100%" }}>
-      <Portal style={{padding:0, margin: 0}}>
-        <Modal visible={visible} onDismiss={hideModal} style={{padding: 0, margin: 0}} contentContainerStyle={containerStyle}>
-          <MaterialCommunityIcons name="check-circle-outline" style={{color: "#4CAF50", fontSize: 50, textAlign: 'center' }}/>
-          <Text style={{fontSize: 18, textAlign: 'center', marginTop: 10,}}>Bạn đã  hoàn thành bài trắc nghiệm với số câu đúng là 14/16.</Text>
-          <Button style={{backgroundColor: "#4CAF50", marginTop: 15 }} color="white" labelStyle={{fontSize: 17}} onPress={hideModal}>Xem kết quả</Button>
+      <Portal style={{ padding: 0, margin: 0 }}>
+        <Modal visible={visible} onDismiss={hideModal} style={{ padding: 0, margin: 0 }} contentContainerStyle={containerStyle}>
+          <MaterialCommunityIcons name="check-circle-outline" style={{ color: "#4CAF50", fontSize: 50, textAlign: 'center' }} />
+          <Text style={{ fontSize: 18, textAlign: 'center', marginTop: 10, }}>Bạn đã  hoàn thành bài trắc nghiệm với số câu đúng là 14/16.</Text>
+          <Button style={{ backgroundColor: "#4CAF50", marginTop: 15 }} color="white" labelStyle={{ fontSize: 17 }} onPress={hideModal} onPress={() => {navigation.navigate("QuizResult", {quizLession: "Nguyên tử"}); setVisible(false) }}>Xem kết quả</Button>
         </Modal>
       </Portal>
 
@@ -83,18 +112,24 @@ const QuizList = ({ navigation, route }) => {
 
       <ScrollView style={styles.items}>
         {
-          lessions.map((lession, index) =>
-          (
-            <Card style={[styles.cardStyle, index == lessions.length - 1 ? { marginBottom: 20 } : {}]} key={index}>
+          lessions.map((lession, index) => (
+            <Card style={[styles.cardStyle, index === lessions.length - 1 ? {marginBottom: 20} : {}]} onPress={() => navigation.navigate("Quiz", {quizLession: lession.name})}>
               <Card.Content>
-                {/* <Button onPress={() => navigation.navigate("Quiz", {quizLession: lession})} title={lession} color={'#fff'}> */}
-                <Button color="#000" labelStyle={{fontSize: 16, fontWeight: 'bold'}} onPress={() => navigation.navigate("Quiz", {quizLession: lession})}>
-                  {lession}
-                </Button>
+                <View style={styles.cardContentInfoWrapper}>
+                  <Text style={styles.cardContentInfo}>{lession.name}</Text>
+                </View>
+                <View style={styles.cardContentProgressWrapper}>
+                  <View style={styles.progressBarWrapper}>
+                    <View style={[styles.activeProgressBar, , { width: `${lession.done/lession.total * 100}%` }]}></View>
+                    <View style={[styles.nonActiveProgressBar, { width: `${(1 - lession.done/lession.total) * 100}%` }]}></View>
+                  </View>
+                  <View>
+                    <Text style={{ fontWeight: '400' }}>{lession.done}/{lession.total}</Text>
+                  </View>
+                </View>
               </Card.Content>
             </Card>
-          )
-          )
+          ))
         }
       </ScrollView>
     </View>
@@ -103,17 +138,19 @@ const QuizList = ({ navigation, route }) => {
 
 const styles = StyleSheet.create({
   breadcum: {
-    width: "65%",
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "flex-start",
     padding: 10,
     margin: 10,
+    fontSize: 16,
+    borderRadius: 4,
     backgroundColor: "rgba(33, 33, 33, 0.08)"
   },
 
   breadcumText: {
     color: "rgba(0, 0, 0, 0.5)",
+    fontSize: 18
   },
 
   activeBreadcumText: {
@@ -121,9 +158,10 @@ const styles = StyleSheet.create({
   },
 
   chevronIcon: {
-    fontSize: 10,
-    color: "rgba(0, 0, 0, 0.5)",
-    marginTop: 4
+    fontSize: 15,
+    color: "rgba(0, 0, 0, 0.2)",
+    marginTop: 4,
+    marginHorizontal: 10,
   },
 
   items: {
@@ -147,6 +185,8 @@ const styles = StyleSheet.create({
     marginTop: 20,
     width: '100%',
     shadowColor: "#000",
+    borderLeftWidth: 4,
+    borderLeftColor: "#004d04",
     shadowOffset: {
       width: 0,
       height: 5,
@@ -155,16 +195,42 @@ const styles = StyleSheet.create({
     shadowRadius: 8.30,
   },
 
-  // cardButton: {
-  //   textAlign: 'left',
-  //   color: '#00000',
-  // }
+  cardContentInfo: {
+    fontSize: 18,
+    fontWeight: "600",
+    color: '#004d04'
+  },
 
-  // center: {
-  //   flex: 1,
-  //   alignItems: "center",
-  //   justifyContent: "center",
-  // },
+  cardContentInfoWrapper: {
+    borderBottomColor: '#004d04',
+    paddingBottom: 15,
+    borderBottomWidth: 1
+  },
+
+  activeProgressBar: {
+    height: 5,
+    backgroundColor: '#004d04'
+  },
+
+  nonActiveProgressBar: {
+    height: 5,
+    backgroundColor: "rgba(33, 33, 33, 0.1)"
+  },
+
+  progressBarWrapper: {
+    display: 'flex',
+    flexDirection: 'row',
+    // marginTop: 15,
+    width: "85%"
+  },
+
+  cardContentProgressWrapper: {
+    paddingTop: 6,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  }
 });
 
 export default QuizList;

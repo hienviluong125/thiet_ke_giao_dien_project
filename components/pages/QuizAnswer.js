@@ -2,7 +2,7 @@ import React from "react";
 import { TextInput, ScrollView, Text, View, StyleSheet } from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Modal, Portal, FAB, RadioButton, Button, DefaultTheme, ThemeProvider as PaperProvider } from 'react-native-paper';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const questionNo = ['A', 'B', 'C', 'D'];
 let defaultQuestion = [
@@ -180,6 +180,13 @@ const QuizAnswer = ({ navigation, route }) => {
       accent: "#f1c40f",
     },
   };
+
+  useEffect(() => {
+    if(route.params && route.params.qIdx) {
+      setQuestionIndex(route.params.qIdx)
+      setFastNavQuestionIdx(route.params.qIdx + 1)
+    }
+  }, [route]);
 
   const [totalQuestions, _1] = useState(defaultQuestion.length);
   const [questionIndex, setQuestionIndex] = useState(0);

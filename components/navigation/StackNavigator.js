@@ -16,6 +16,7 @@ import CourseDocument from "../pages/CourseDocument";
 import QuizList from "../pages/QuizList";
 import Quiz from "../pages/Quiz";
 import QuizAnswer from "../pages/QuizAnswer";
+import QuizResult from "../pages/QuizResult";
 
 const Stack = createStackNavigator();
 
@@ -92,6 +93,15 @@ const LearningStackNavigator = () => {
       <Stack.Screen
         name="QuizAnswer"
         component={QuizAnswer}
+        options={{
+          ...headerBaseStyle,
+          headerTitle: "Hóa học 10",
+        }}
+      />
+
+      <Stack.Screen
+        name="QuizResult"
+        component={QuizResult}
         options={{
           ...headerBaseStyle,
           headerTitle: "Hóa học 10",

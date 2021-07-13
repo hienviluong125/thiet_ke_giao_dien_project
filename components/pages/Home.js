@@ -1,24 +1,20 @@
 import React from "react";
-import { Text, View, StyleSheet, Button } from "react-native";
+import { StyleSheet, ScrollView } from "react-native";
+
+import PopularCourses from "../carousels/PopularCourses";
+import FeatureCourses from "../carousels/FeatureCourses";
 
 const HomeScreen = ({ navigation }) => {
   return (
-    <View style={styles.center}>
-      <Text>Home Screen</Text>
-      <Button
-        title="Go to Nested Screen"
-        onPress={() => navigation.navigate("Nested")}
-      />
-    </View>
+    <ScrollView style={styles.center}>
+      <FeatureCourses />
+      <PopularCourses label="Khóa học phổ biến" />
+      <PopularCourses label="Khóa học mới" />
+      <PopularCourses label="Mua nhiều trong tuần" />
+    </ScrollView>
   );
 };
 
-const styles = StyleSheet.create({
-  center: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
+const styles = StyleSheet.create({});
 
 export default HomeScreen;
